@@ -1,7 +1,7 @@
 /** @format */
 
 import {DataSource, Repository} from 'typeorm';
-import {User} from './User';
+import User from './User';
 
 export default class UserRepository {
 	private readonly userRepository: Repository<User>;

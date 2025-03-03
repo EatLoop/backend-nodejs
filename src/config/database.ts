@@ -1,8 +1,8 @@
 /** @format */
 
 import {DataSource, DataSourceOptions} from 'typeorm';
-import {User} from '../auth/User';
 import UserRepository from '../auth/UserRepository';
+import entities from '../entities';
 const DATABASE_TYPE = 'postgres';
 
 let dataSource: DataSource;
@@ -20,7 +20,7 @@ const getDataSource: () => Promise<DataSource> = async () => {
 		username: DB_USERNAME,
 		password: DB_PASSWORD,
 		database: DB_NAME,
-		entities: [User],
+		entities,
 		synchronize: process.env.NODE_ENV !== 'production',
 		logging: process.env.NODE_ENV !== 'production',
 		dropSchema: process.env.NODE_ENV !== 'production',
@@ -35,10 +35,10 @@ const getDataSource: () => Promise<DataSource> = async () => {
 	}
 	return dataSource;
 };
-const databaseParameters:{
-      dataSource:DataSource | null,
-      userRepository:UserRepository | null
-} = {dataSource:null, userRepository:null};
+const databaseParameters: {
+	dataSource: DataSource | null;
+	userRepository: UserRepository | null;
+} = {dataSource: null, userRepository: null};
 export const configureDatabase = async () => {
 	const dataSource = await getDataSource();
 	await dataSource.initialize();
