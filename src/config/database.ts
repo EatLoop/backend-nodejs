@@ -5,9 +5,16 @@ import UserRepository from '../auth/UserRepository';
 import entities from '../entities';
 const DATABASE_TYPE = 'postgres';
 
-let dataSource: DataSource;
-const getDataSource: () => Promise<DataSource> = async () => {
-	if (dataSource) return dataSource;
+interface DatabaseParameters {
+	dataSource: DataSource | null;
+	userRepository: UserRepository | null;
+}
+
+const databaseParameters: DatabaseParameters = {dataSource: null, userRepository: null};
+
+
+export const configureDatabase = async () => {
+	if (databaseParameters.dataSource) return databaseParameters.dataSource;
 	const {DB_HOST, DB_PORT, DB_USERNAME, DB_PASSWORD, DB_NAME} = process.env;
 	if (!DB_HOST || !DB_PORT || !DB_USERNAME || !DB_PASSWORD || !DB_NAME) {
 		console.error({DB_HOST, DB_PORT, DB_USERNAME, DB_PASSWORD, DB_NAME});
@@ -26,22 +33,13 @@ const getDataSource: () => Promise<DataSource> = async () => {
 		dropSchema: process.env.NODE_ENV !== 'production',
 		logger: 'simple-console',
 	};
-	dataSource = new DataSource(options);
+	const dataSource = new DataSource(options);
 	try {
 		await dataSource.initialize();
 		console.log('Database connected successfully');
 	} catch (error) {
 		console.error('Error initializing database', error);
 	}
-	return dataSource;
-};
-const databaseParameters: {
-	dataSource: DataSource | null;
-	userRepository: UserRepository | null;
-} = {dataSource: null, userRepository: null};
-export const configureDatabase = async () => {
-	const dataSource = await getDataSource();
-	await dataSource.initialize();
 	const userRepository = await UserRepository.initialize(dataSource);
 	databaseParameters.dataSource = dataSource;
 	databaseParameters.userRepository = userRepository;
