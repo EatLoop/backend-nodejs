@@ -1,0 +1,28 @@
+{
+	"name": "eatloop",
+	"version": "1.0.0",
+	"description": "A food delivery app",
+	"main": "dist/index.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"build": "tsc",
+		"start": "node dist/index.js",
+		"dev": "nodemon src/index.ts"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/EatLoop/backend-nodejs.git"
+	},
+	"author": "",
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/EatLoop/backend-nodejs/issues"
+	},
+	"homepage": "https://github.com/EatLoop/backend-nodejs#readme",
+	"devDependencies": {
+		"@types/node": "^22.13.8",
+		"nodemon": "^3.1.9",
+		"ts-node": "^10.9.2",
+		"typescript": "^5.8.2"
+	}
+}
