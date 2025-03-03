@@ -1,7 +1,6 @@
 import dotenv from "dotenv";
 
-const configureEnvironment =() => {
+export const configureEnvironment =() => {
 	dotenv.config();
 }
 
-export default configureEnvironment;

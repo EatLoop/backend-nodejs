@@ -36,7 +36,6 @@ export const configureDatabase = async () => {
 	const dataSource = new DataSource(options);
 	try {
 		await dataSource.initialize();
-		console.log('Database connected successfully');
 	} catch (error) {
 		console.error('Error initializing database', error);
 	}
