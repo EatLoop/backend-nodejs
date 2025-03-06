@@ -1,11 +1,11 @@
 /** @format */
 
 import {Column, CreateDateColumn, Entity, ManyToMany, PrimaryGeneratedColumn, UpdateDateColumn} from 'typeorm';
-import {Role} from './Role';
+import Role from './Role';
 @Entity('users')
 export default class User {
 	@PrimaryGeneratedColumn('uuid')
-	id: string;
+	id?: string;
 
 	@Column({type: 'varchar', length: 255, unique: true})
 	email: string;
@@ -17,20 +17,17 @@ export default class User {
 	password: string;
 
 	@CreateDateColumn()
-	createdAt: Date;
+	createdAt?: Date;
 
 	@UpdateDateColumn()
-	updatedAt: Date;
+	updatedAt?: Date;
 
 	@ManyToMany(() => Role)
-	role?: Role[];
+	roles?: Role[];
 
-	constructor(id: string, email: string, name: string, password: string, createdAt: Date, updatedAt: Date) {
-		this.id = id;
+	constructor(email: string, name: string, password: string) {
 		this.email = email;
 		this.name = name;
 		this.password = password;
-		this.createdAt = createdAt;
-		this.updatedAt = updatedAt;
 	}
 }

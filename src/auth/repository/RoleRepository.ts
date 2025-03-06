@@ -1,5 +1,5 @@
+import Role from "auth/model/Role";
 import { DataSource, Repository } from "typeorm";
-import { Role } from "../model/Role";
 
 
 export default class RoleRepository {

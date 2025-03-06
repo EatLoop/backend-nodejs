@@ -1,16 +1,18 @@
 /** @format */
 
 import {DataSource, DataSourceOptions} from 'typeorm';
-import UserRepository from '../auth/repository/UserRepository';
-import entities from '../entities';
+import RoleRepository from 'auth/repository/RoleRepository';
+import UserRepository from 'auth/repository/UserRepository';
+import entities from 'entities';
 const DATABASE_TYPE = 'postgres';
 
 interface DatabaseParameters {
-	dataSource: DataSource | null;
-	userRepository: UserRepository | null;
+	dataSource?: DataSource;
+	userRepository?: UserRepository;
+	roleRepository?: RoleRepository;
 }
 
-const databaseParameters: DatabaseParameters = {dataSource: null, userRepository: null};
+let databaseParameters: DatabaseParameters = {};
 
 export const configureDatabase = async () => {
 	if (databaseParameters.dataSource) return databaseParameters.dataSource;
@@ -39,8 +41,10 @@ export const configureDatabase = async () => {
 		console.error('Error initializing database', error);
 	}
 	const userRepository = await UserRepository.initialize(dataSource);
-	databaseParameters.dataSource = dataSource;
-	databaseParameters.userRepository = userRepository;
+	const roleRepository=await RoleRepository.initialize(dataSource)
+	databaseParameters={
+		dataSource,userRepository,roleRepository
+	}
 };
 const getDatabaseParams = () => {
 	return databaseParameters;
