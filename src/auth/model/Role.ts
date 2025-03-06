@@ -2,7 +2,7 @@
 
 // src/entities/Role.ts
 import {Column, Entity, ManyToMany, PrimaryGeneratedColumn} from 'typeorm';
-import {Permission} from '../service/Permission';
+import {Permission} from './Permission';
 
 @Entity()
 export class Role {
