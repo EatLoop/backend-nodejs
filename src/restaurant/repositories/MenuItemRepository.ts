@@ -12,8 +12,8 @@ export default class MenuItemRepository {
 		const menuItemRepository = dataSource.getRepository(MenuItem);
 		return new MenuItemRepository(menuItemRepository);
 	}
-	async createMenuItem(menuId: string, name: string, description: string, price: number, category: string[]): Promise<MenuItem> {
-		return this.menuItemRepository.save(new MenuItem(name, description, price, category, menuId));
+	async createMenuItem(menuItem:MenuItem): Promise<MenuItem> {
+		return this.menuItemRepository.save(menuItem);
 	}
 	async deleteMenuItem(menuItemId: string): Promise<void> {
 		await this.menuItemRepository.delete(menuItemId);

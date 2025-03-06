@@ -1,10 +1,6 @@
 
 class MenuItemRemovalRequestDto {
-      constructor(
-            public readonly menuItemId: string,
-      ) {
-            this.menuItemId = menuItemId;
-      }
+      constructor(public readonly menuItemId: string) {}
 }
 
 export default MenuItemRemovalRequestDto;

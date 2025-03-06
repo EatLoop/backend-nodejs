@@ -1,7 +1,6 @@
+/** @format */
+
 export default class UpdateManagerRequestDto {
-      constructor(
-            public readonly manager_id: string,
-            public readonly location_id: string,
-      ) {}
+	constructor(public readonly managerId: string, public readonly location_id: string) {
+      }
 }
-      

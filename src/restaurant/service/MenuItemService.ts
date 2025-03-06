@@ -6,13 +6,12 @@ import MenuItem from '../models/MenuItem';
 import MenuItemRepository from '../repositories/MenuItemRepository';
 
 export default class MenuItemService {
-	private readonly menuItemRepository: MenuItemRepository;
-	constructor(menuItemRepository: MenuItemRepository) {
-		this.menuItemRepository = menuItemRepository;
-	}
-	async createMenuItem(menuItem: MenuItemCreationRequest): Promise<MenuItem> {
-		const {menuId, name, description, price, category} = menuItem;
-		return this.menuItemRepository.createMenuItem(menuId, name, description, price, category);
+	constructor(private readonly menuItemRepository: MenuItemRepository) {}
+
+	async createMenuItem(menuItemRequest: MenuItemCreationRequest): Promise<MenuItem> {
+		const {menuId, name, description, price, category} = menuItemRequest;
+		const menuItem = new MenuItem(name, description, price, category,menuId);
+		return this.menuItemRepository.createMenuItem(menuItem);
 	}
 	async deleteMenuItem(menuItem: MenuItemRemovalRequestDto): Promise<void> {
 		const {menuItemId} = menuItem;

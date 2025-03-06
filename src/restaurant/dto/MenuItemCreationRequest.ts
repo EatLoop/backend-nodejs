@@ -7,11 +7,5 @@ export default class MenuItemCreationRequest {
             public readonly menuId: string,
             public readonly description: string,
             public readonly category: string[],
-      ) {
-            this.name = name;
-            this.price = price;
-            this.menuId = menuId;
-            this.description = description;
-            this.category = category;
-      }
+      ) {}
 }

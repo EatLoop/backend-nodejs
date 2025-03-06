@@ -3,10 +3,7 @@
 import {DataSource, Repository} from 'typeorm';
 import Restaurant from '../models/Restaurant';
 export default class RestaurantRepository {
-	private readonly restaurantRepository: Repository<Restaurant>;
-	private constructor(repository: Repository<Restaurant>) {
-		this.restaurantRepository = repository;
-	}
+	private constructor(private readonly restaurantRepository: Repository<Restaurant>) {}
 
 	static async initialize(dataSource: DataSource): Promise<RestaurantRepository> {
 		const repository = dataSource.getRepository(Restaurant);

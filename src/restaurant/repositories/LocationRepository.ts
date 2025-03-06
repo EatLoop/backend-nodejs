@@ -11,17 +11,13 @@ export default class LocationRepository {
             const locationRepository = dataSource.getRepository(Location);
             return new LocationRepository(locationRepository);
       }
-      async createLocation(managerId:string,restaurantId:string,address:string,city:string,state:string): Promise<Location> {
-            return this.locationRepository.save(new Location(address, city, state, managerId, restaurantId));
+      async createLocation(location:Location): Promise<Location> {
+            return this.locationRepository.save(location);
       }
       async findById(id: string): Promise<Location | null> {
             return this.locationRepository.findOne({where: {id}});
       }
-      async updateManager(new_manager_id:string,location_id:string): Promise<Location> {
-            const location=await this.findById(location_id)
-            if(!location)
-                  throw new Error("Location not found")
-            location.managerId=new_manager_id
+      async updateManager(location:Location): Promise<Location> {
             return this.locationRepository.save(location)
       }
       async deleteLocation(location:Location): Promise<void> {

@@ -1,31 +1,32 @@
+/** @format */
 
-
-import Location from "../models/Location";
-import LocationCreationRequestDto from "../dto/LocationCreationRequestDto";
-import LocationRepository from "../repositories/LocationRepository";
-import UpdateManagerRequestDto from "../dto/UpdateManagerRequestDto";
+import LocationCreationRequestDto from '../dto/LocationCreationRequestDto';
+import UpdateManagerRequestDto from '../dto/UpdateManagerRequestDto';
+import Location from '../models/Location';
+import LocationRepository from '../repositories/LocationRepository';
 
 export default class LocationService {
-      private readonly locationRepository: LocationRepository;
 
-      constructor(locationRepository: LocationRepository) {
-            this.locationRepository = locationRepository;
-      }
-      async createLocation(locationRequest: LocationCreationRequestDto): Promise<Location> {
-            const {manager_id,restaurant_id,address,city,state}=locationRequest
-            return this.locationRepository.createLocation(manager_id, restaurant_id, address, city, state);
-      }
-      async findLocationById(id: string): Promise<Location | null> {
-            return this.locationRepository.findById(id);
-      }
-      async updateManager(updateManagerRequest:UpdateManagerRequestDto): Promise<Location> {
-            const {manager_id,location_id}=updateManagerRequest
-            return this.locationRepository.updateManager(manager_id,location_id)
-      }
-      async deleteLocation(location_id:string): Promise<void> {
-            const location=await this.locationRepository.findById(location_id)
-            if(!location)
-                  throw new Error("Location not found")
-            await this.locationRepository.deleteLocation(location)
-      }
+	constructor(private readonly locationRepository: LocationRepository) {}
+      
+	async createLocation(locationRequest: LocationCreationRequestDto): Promise<Location> {
+		const {managerId, restaurantId, address, city, state} = locationRequest;
+		const location = new Location(address, city, state, managerId, restaurantId);
+		return this.locationRepository.createLocation(location);
+	}
+	async findLocationById(id: string): Promise<Location | null> {
+		return this.locationRepository.findById(id);
+	}
+	async updateManager(updateManagerRequest: UpdateManagerRequestDto): Promise<Location> {
+		const {managerId, location_id} = updateManagerRequest;
+		const location = await this.locationRepository.findById(location_id);
+		if (!location) throw new Error('Location not found');
+		location.managerId = managerId;
+		return this.locationRepository.updateManager(location);
+	}
+	async deleteLocation(location_id: string): Promise<void> {
+		const location = await this.locationRepository.findById(location_id);
+		if (!location) throw new Error('Location not found');
+		await this.locationRepository.deleteLocation(location);
+	}
 }
