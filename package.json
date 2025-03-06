@@ -21,6 +21,7 @@
 	"homepage": "https://github.com/EatLoop/backend-nodejs#readme",
 	"devDependencies": {
 		"@types/bcrypt": "^5.0.2",
+		"@types/express": "^5.0.0",
 		"@types/node": "^22.13.8",
 		"@types/pg": "^8.11.11",
 		"nodemon": "^3.1.9",
@@ -31,6 +32,8 @@
 		"@nestjs/typeorm": "^11.0.0",
 		"bcrypt": "^5.1.1",
 		"dotenv": "^16.4.7",
+		"eatloop": "file:",
+		"express": "^4.21.2",
 		"pg": "^8.13.3",
 		"typeorm": "^0.3.21"
 	}

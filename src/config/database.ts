@@ -1,7 +1,7 @@
 /** @format */
 
 import {DataSource, DataSourceOptions} from 'typeorm';
-import UserRepository from '../auth/UserRepository';
+import UserRepository from '../auth/repository/UserRepository';
 import entities from '../entities';
 const DATABASE_TYPE = 'postgres';
 
@@ -11,7 +11,6 @@ interface DatabaseParameters {
 }
 
 const databaseParameters: DatabaseParameters = {dataSource: null, userRepository: null};
-
 
 export const configureDatabase = async () => {
 	if (databaseParameters.dataSource) return databaseParameters.dataSource;

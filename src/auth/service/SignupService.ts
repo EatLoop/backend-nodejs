@@ -2,10 +2,10 @@
 
 import * as bcrypt from 'bcrypt';
 import {v4 as uuidv4} from 'uuid';
-import User from './User';
-import UserRepository from './UserRepository';
-import validateUserDetails from '../validation/UserSignupRequestValidation';
-import authDetails from '../config/auth';
+import authDetails from '../../config/auth';
+import validateUserDetails f../repository/UserRepositorytion/UserSignupRequestValidation';
+import User from '../model/User';
+import UserRepository from '../UserRepository';
 
 export class SignupService {
 	constructor(private readonly userRepository: UserRepository) {
@@ -27,4 +27,3 @@ export class SignupService {
 		return await this.userRepository.createUser(user);
 	}
 }
-
