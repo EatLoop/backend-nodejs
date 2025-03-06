@@ -31,6 +31,7 @@
 		"@nestjs/typeorm": "^11.0.0",
 		"bcrypt": "^5.1.1",
 		"dotenv": "^16.4.7",
+		"eatloop": "file:",
 		"pg": "^8.13.3",
 		"typeorm": "^0.3.21"
 	}
