@@ -1,9 +1,9 @@
 /** @format */
 
-import * as bcrypt from 'bcrypt';
-import authDetails from 'config/auth';
 import User from 'auth/model/User';
 import UserRepository from 'auth/repository/UserRepository';
+import * as bcrypt from 'bcrypt';
+import authDetails from 'config/auth';
 import validateUserDetails from 'validation/UserSignupRequestValidation';
 
 export default class SignupService {

@@ -1,8 +1,10 @@
-import JwtService from "auth/service/JwtService";
-import SignupService from "auth/service/SignupService";
-import { Request, Response } from "express";
+/** @format */
 
-const register = (signupService:SignupService,jwtService:JwtService) => async (req: Request, res: Response) => {
+import {Request, Response} from 'express';
+import JwtService from 'auth/service/JwtService';
+import SignupService from 'auth/service/SignupService';
+
+const register = (signupService: SignupService, jwtService: JwtService) => async (req: Request, res: Response) => {
 	const {name, email, password} = req.body;
 	const {id, roles} = await signupService.signup(name, email, password);
 	if (!id || !roles) {
@@ -14,4 +16,4 @@ const register = (signupService:SignupService,jwtService:JwtService) => async (r
 	res.status(201).json({token});
 };
 
-export default register
+export default register;

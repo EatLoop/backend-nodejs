@@ -1,6 +1,7 @@
-import Role from "auth/model/Role";
-import { DataSource, Repository } from "typeorm";
+/** @format */
 
+import Role from 'auth/model/Role';
+import {DataSource, Repository} from 'typeorm';
 
 export default class RoleRepository {
 	constructor(private readonly roleRepository: Repository<Role>) {}
@@ -8,4 +9,4 @@ export default class RoleRepository {
 		const roleRepository = datasource.getRepository(Role);
 		return new RoleRepository(roleRepository);
 	}
-} 
+}
