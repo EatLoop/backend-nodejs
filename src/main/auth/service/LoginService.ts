@@ -1,7 +1,7 @@
 
 import * as bcrypt from 'bcrypt';
-import UserRepository from './UserRepository';
-import validateUserDetails from '../validation/UserLoginRequestValidator';
+import UserRepository from 'auth/repository/UserRepository';
+import validateUserDetails from 'validation/UserLoginRequestValidator';
 
 export default class LoginService {
 	constructor(private readonly userRepository: UserRepository) {

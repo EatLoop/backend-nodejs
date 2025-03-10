@@ -4,7 +4,7 @@
 	"description": "A food delivery app",
 	"main": "dist/index.js",
 	"scripts": {
-		"test": "echo \"Error: no test specified\" && exit 1",
+		"test": "jest",
 		"build": "tsc",
 		"start": "node dist/index.js",
 		"dev": "nodemon src/index.ts"
@@ -21,16 +21,33 @@
 	"homepage": "https://github.com/EatLoop/backend-nodejs#readme",
 	"devDependencies": {
 		"@types/bcrypt": "^5.0.2",
-		"@types/node": "^22.13.8",
+		"@types/bcryptjs": "^2.4.6",
+		"@types/express": "^5.0.0",
+		"@types/jest": "^29.5.14",
+		"@types/jsonwebtoken": "^9.0.9",
+		"@types/node": "^22.13.10",
 		"@types/pg": "^8.11.11",
+<<<<<<< HEAD
+		"jest": "^29.7.0",
 		"nodemon": "^3.1.9",
+=======
+		"@types/supertest": "^6.0.2",
+		"jest": "^29.7.0",
+		"nodemon": "^3.1.9",
+		"supertest": "^7.0.0",
+>>>>>>> recovery-branch
+		"ts-jest": "^29.2.6",
 		"ts-node": "^10.9.2",
 		"typescript": "^5.8.2"
 	},
 	"dependencies": {
 		"@nestjs/typeorm": "^11.0.0",
 		"bcrypt": "^5.1.1",
+		"bcryptjs": "^3.0.2",
 		"dotenv": "^16.4.7",
+		"eatloop": "file:",
+		"express": "^4.21.2",
+		"jsonwebtoken": "^9.0.2",
 		"pg": "^8.13.3",
 		"typeorm": "^0.3.21"
 	}

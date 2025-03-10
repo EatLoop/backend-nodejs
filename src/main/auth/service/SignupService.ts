@@ -1,16 +1,13 @@
 /** @format */
 
+import User from 'auth/model/User';
+import UserRepository from 'auth/repository/UserRepository';
 import * as bcrypt from 'bcrypt';
-import {v4 as uuidv4} from 'uuid';
-import User from './User';
-import UserRepository from './UserRepository';
-import validateUserDetails from '../validation/UserSignupRequestValidation';
-import authDetails from '../config/auth';
+import authDetails from 'config/auth';
+import validateUserDetails from 'validation/UserSignupRequestValidation';
 
-export class SignupService {
-	constructor(private readonly userRepository: UserRepository) {
-		this.userRepository = userRepository;
-	}
+export default class SignupService {
+	constructor(private readonly userRepository: UserRepository) {}
 
 	async signup(name: string, email: string, password: string) {
 		const existingUser = await this.userRepository.findByEmail(email);
@@ -20,11 +17,8 @@ export class SignupService {
 		name = name.trim();
 		email = email.trim();
 		password = password.trim();
-		const id = uuidv4();
 		const passwordHash = bcrypt.hashSync(password, authDetails.bcryptSaltRounds);
-		const now = new Date();
-		const user = new User(id, email, name, passwordHash, now, now);
+		const user = new User(email, name, passwordHash);
 		return await this.userRepository.createUser(user);
 	}
 }
-

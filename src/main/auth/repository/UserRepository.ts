@@ -1,13 +1,10 @@
 /** @format */
 
+import User from 'auth/model/User';
 import {DataSource, Repository} from 'typeorm';
-import User from './User';
 
 export default class UserRepository {
-	private readonly userRepository: Repository<User>;
-	private constructor(repository: Repository<User>) {
-		this.userRepository = repository;
-	}
+	private constructor(private readonly userRepository: Repository<User>) {}
 
 	static async initialize(dataSource: DataSource): Promise<UserRepository> {
 		const repository = dataSource.getRepository(User);
