@@ -1,6 +1,9 @@
 import { DataSource, Repository } from 'typeorm';
 import Restaurant from '../models/Restaurant';
 export default class RestaurantRepository {
+    async existsById(restaurantId: string) {
+        return this.restaurantRepository.existsBy({id:restaurantId})
+    }
 	private constructor(private readonly restaurantRepository: Repository<Restaurant>) {}
 
 	static async initialize(dataSource: DataSource): Promise<RestaurantRepository> {

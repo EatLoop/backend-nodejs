@@ -17,9 +17,12 @@ export default class Location {
 
 	@Column()
 	managerId?: string;
+	
+	@Column()
+	ownerId?: string;
 
 	@Column('jsonb', {nullable: true})
-	openingHours: Record<string, string> | undefined;
+	openingHours?: Record<string, string>;
 
 	@Column()
 	restaurantId: string;
@@ -30,11 +33,13 @@ export default class Location {
 	@UpdateDateColumn()
 	updatedAt?: Date;
 
-	constructor(address: string, city: string, state: string, managerId: string, restaurantId: string) {
+	constructor(address: string, city: string, state: string, managerId: string, restaurantId: string,ownerId: string,openingHours:Record<string,string>) {
 		this.address = address;
 		this.city = city;
 		this.state = state;
 		this.managerId = managerId;
 		this.restaurantId = restaurantId;
+		this.ownerId=ownerId;
+		this.openingHours=openingHours
 	}
 }

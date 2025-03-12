@@ -11,6 +11,6 @@ export default function getRestaurantRouter(restaurantCreationService:Restaurant
     const router=Router();
     router.post('/',authenticate,requireRole('RESTAURANT_OWNER'),getRestaurantCreationController(restaurantCreationService));
     router.get('/:id',getRestaurantFindByIdController(restaurantFindByIdService));
-    router.delete('/id',authenticate,requireRole('RESTAURANT_OWNER'),getRestaurantDeletionController(restaurantDeletionService))
+    router.delete('/:id',authenticate,requireRole('RESTAURANT_OWNER'),getRestaurantDeletionController(restaurantDeletionService))
     return router;
 }
