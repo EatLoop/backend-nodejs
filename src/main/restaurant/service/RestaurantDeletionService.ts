@@ -1,14 +1,16 @@
 /** @format */
 
-import RestaurantCreationRequestDto from '../dto/RestaurantCreationRequestDto';
-import Restaurant from '../models/Restaurant';
 import RestaurantRepository from '../repositories/RestaurantRepository';
-export default class RestaurantCreationRequest {
+export default class RestaurantDeletionService {
 	constructor(private readonly restaurantRepository: RestaurantRepository) {}
 
-	async createRestaurant(restaurantRequest: RestaurantCreationRequestDto): Promise<Restaurant> {
-		const {main_head_id, restaurant_description, restaurant_name} = restaurantRequest;
-		const restaurant = new Restaurant(restaurant_name, restaurant_description, main_head_id);
-		return this.restaurantRepository.createRestaurant(restaurant);
+	async deleteRestaurant(restaurant_id:string,userId:string): Promise<boolean> {
+		const restaurant =await this.restaurantRepository.findById(restaurant_id);
+        if(restaurant?.main_head_id==userId){
+		    await this.restaurantRepository.deleteRestaurant(restaurant_id);
+            return true
+        }
+        return false
+
 	}
 }
