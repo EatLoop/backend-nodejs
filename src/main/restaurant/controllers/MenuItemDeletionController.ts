@@ -1,12 +1,20 @@
 /** @format */
 
 import MenuItemDeletionService from '../service/MenuItemDeletionService';
-import MenuItemRemovalRequestDto from '../dto/MenuItemRemovalRequestDto';
+import { Request, Response } from 'express';
+import { AuthRequest } from '../../auth/middleware/JwtFilter';
 
-export default class MenuItemDeletionController {
-	constructor(private readonly service: MenuItemDeletionService) {}
+export default function getMenuItemDeletionController(service: MenuItemDeletionService) {
 
-	async deleteMenuItem(menuItem: MenuItemRemovalRequestDto): Promise<void> {
-		await this.service.deleteMenuItem(menuItem);
+	return async(req:Request,res:Response): Promise<void> => {
+	try {
+		const authRequest=req as AuthRequest
+		const menuRequest=req.body
+		const userId=authRequest.userId
+		await service.deleteMenuItem(menuRequest,userId);
+		res.status(204).json({message:'Deleted Menu item Successfully'})
+	} catch (error) {
+		res.status(400).json({error})
+	}
 	}
 }

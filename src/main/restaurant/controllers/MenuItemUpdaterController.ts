@@ -1,12 +1,16 @@
 /** @format */
 
 import MenuItemUpdaterService from '../service/MenuItemUpdaterService';
-import MenuItem from '../models/MenuItem';
+import { Request, Response } from 'express';
 
-export default class MenuItemUpdaterController {
-	constructor(private readonly service: MenuItemUpdaterService) {}
-
-	async updateMenuItem(menuItem: Partial<MenuItem>): Promise<MenuItem> {
-		return this.service.updateMenuItem(menuItem);
+export default function getMenuItemUpdaterController(service: MenuItemUpdaterService) {
+	return async(req:Request,res:Response): Promise<void> => {
+		try {
+			const body=req.body
+			const responseBody=await service.updateMenuItem(body)
+			res.json({responseBody})
+		} catch (error) {
+			res.status(400).json({error})
+		}
 	}
 }

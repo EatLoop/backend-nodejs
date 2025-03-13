@@ -18,6 +18,10 @@ import configure from './config';
 import getMenuRouter from 'restaurant/router/MenuRouter';
 import MenuFindByIdService from 'restaurant/service/MenuFindByIdService';
 import MenuCreationService from 'restaurant/service/MenuCreationService';
+import getMenuItemRouter from 'restaurant/router/MenuItemRouter';
+import MenuItemCreationService from 'restaurant/service/MenuItemCreationService';
+import MenuItemUpdaterService from 'restaurant/service/MenuItemUpdaterService';
+import MenuItemDeletionService from 'restaurant/service/MenuItemDeletionService';
 
 const main = async () => {
 	await configure();
@@ -38,10 +42,14 @@ const main = async () => {
 	const locationDeleterService=new LocationDeleterService(locationRepository);
 	const menuFindByIdService=new MenuFindByIdService(menuRepository)
 	const menuCreationService=new MenuCreationService(menuRepository,restaurantRepository)
+	const menuItemCreationService=new MenuItemCreationService(menuItemRepository)
+	const menuItemUpdaterService=new MenuItemUpdaterService(menuItemRepository)
+	const menuItemDeletionService=new MenuItemDeletionService(menuItemRepository)
 	app.use('/api/v1/auth',getAuthRouter(loginService,signupService,jwtService))
 	app.use('/api/v1/restaurant',getRestaurantRouter(restaurantCreationService,restaurantFindByIdService,restaurantDeletionService))
 	app.use('/api/v1/location',getLocationRouter(locationCreationService,locationFindByIdService,managerUpdateService,locationDeleterService))
 	app.use('/api/v1/menu',getMenuRouter(menuFindByIdService,menuCreationService))
+	app.use('/api/v1/menuItem',getMenuItemRouter(menuItemCreationService,menuItemUpdaterService,menuItemDeletionService))
 	app.listen(port,()=>{
 		console.log('App is running on port: ',port)
 	})
