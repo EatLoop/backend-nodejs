@@ -1,10 +1,17 @@
+import { Request, Response } from 'express';
 import MenuFindByIdService from '../service/MenuFindByIdService';
-import Menu from '../models/Menu';
 
-export default class MenuFindByIdController {
-	constructor(private readonly service: MenuFindByIdService) {}
+export default function getMenuFindByIdController(service: MenuFindByIdService) {
 
-	async findById(menuId: string): Promise<Menu | null> {
-		return this.service.findById(menuId);
+	return async(req:Request,res:Response): Promise<void> =>{
+		try {
+			const menuId=req.params.id
+			const menu=await service.findById(menuId)
+		if(!menu)
+			throw new Error('no menu recieved from db')
+		res.json(menu)
+		} catch (error) {
+			res.status(400).json({error})
+		}
 	}
 }

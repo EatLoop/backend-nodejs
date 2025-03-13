@@ -15,6 +15,9 @@ import RestaurantCreationService from 'restaurant/service/RestaurantCreationServ
 import RestaurantDeletionService from 'restaurant/service/RestaurantDeletionService';
 import RestaurantFindByIdService from 'restaurant/service/RestaurantFindByIdService';
 import configure from './config';
+import getMenuRouter from 'restaurant/router/MenuRouter';
+import MenuFindByIdService from 'restaurant/service/MenuFindByIdService';
+import MenuCreationService from 'restaurant/service/MenuCreationService';
 
 const main = async () => {
 	await configure();
@@ -23,19 +26,22 @@ const main = async () => {
 	const {restaurantRepository,roleRepository,userRepository,menuRepository,menuItemRepository,locationRepository}=getDatabaseParams();
 
 	if(!userRepository || !restaurantRepository || !roleRepository ||!userRepository || !menuRepository || !menuItemRepository || !locationRepository)return
-	const loginService:LoginService=new LoginService(userRepository)
-	const signupService:SignupService=new SignupService(userRepository)
-	const jwtService:JwtService=new JwtService()
+	const loginService=new LoginService(userRepository)
+	const signupService=new SignupService(userRepository)
+	const jwtService=new JwtService()
 	const restaurantFindByIdService=new RestaurantFindByIdService(restaurantRepository)
 	const restaurantDeletionService=new RestaurantDeletionService(restaurantRepository)
 	const restaurantCreationService=new RestaurantCreationService(restaurantRepository)
 	const locationCreationService=new LocationCreationService(locationRepository,restaurantRepository)
-	const locationFindByIdService: LocationFinderByIdService=new LocationFinderByIdService(locationRepository);
-	const managerUpdateService: ManagerUpdateService=new ManagerUpdateService(locationRepository); 
-	const locationDeleterService: LocationDeleterService=new LocationDeleterService(locationRepository);
+	const locationFindByIdService=new LocationFinderByIdService(locationRepository);
+	const managerUpdateService=new ManagerUpdateService(locationRepository); 
+	const locationDeleterService=new LocationDeleterService(locationRepository);
+	const menuFindByIdService=new MenuFindByIdService(menuRepository)
+	const menuCreationService=new MenuCreationService(menuRepository,restaurantRepository)
 	app.use('/api/v1/auth',getAuthRouter(loginService,signupService,jwtService))
 	app.use('/api/v1/restaurant',getRestaurantRouter(restaurantCreationService,restaurantFindByIdService,restaurantDeletionService))
 	app.use('/api/v1/location',getLocationRouter(locationCreationService,locationFindByIdService,managerUpdateService,locationDeleterService))
+	app.use('/api/v1/menu',getMenuRouter(menuFindByIdService,menuCreationService))
 	app.listen(port,()=>{
 		console.log('App is running on port: ',port)
 	})

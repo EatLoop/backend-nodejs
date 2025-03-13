@@ -1,6 +1,9 @@
 import { DataSource, Repository } from 'typeorm';
 import Restaurant from '../models/Restaurant';
 export default class RestaurantRepository {
+	async findOwnerIdById(restaurantId: string):Promise<string|undefined> {
+		return (await this.restaurantRepository.findOne({where:{id:restaurantId},select:['main_head_id']}))?.main_head_id
+	}
     async existsById(restaurantId: string) {
         return this.restaurantRepository.existsBy({id:restaurantId})
     }
