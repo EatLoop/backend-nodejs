@@ -1,7 +1,7 @@
 /** @format */
 
 import jwt from 'jsonwebtoken';
-import Role from 'auth/model/Role';
+import Role from '../model/Role';
 
 export default class JwtService {
 	generateToken({userId, roles}: {userId: string; roles: Role[]}): string {

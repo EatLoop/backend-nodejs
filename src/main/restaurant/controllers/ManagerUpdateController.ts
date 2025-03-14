@@ -2,7 +2,7 @@
 import ManagerUpdateService from '../service/ManagerUpdateService';
 import UpdateManagerRequestDto from '../dto/UpdateManagerRequestDto';
 import { Request, RequestHandler, Response } from 'express';
-import { AuthRequest } from 'auth/middleware/JwtFilter';
+import { AuthRequest } from '../../auth/middleware/JwtFilter';
 
 export default function getManagerUpdateController(service: ManagerUpdateService):RequestHandler {
 	return	async(req:Request,res:Response): Promise<void> =>{

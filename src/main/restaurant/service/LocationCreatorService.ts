@@ -1,7 +1,7 @@
 
-import LocationCreationRequestDto from 'restaurant/dto/LocationCreationRequestDto';
-import Location from 'restaurant/models/Location';
-import RestaurantRepository from 'restaurant/repositories/RestaurantRepository';
+import LocationCreationRequestDto from '../dto/LocationCreationRequestDto';
+import Location from '../models/Location';
+import RestaurantRepository from '../repositories/RestaurantRepository';
 import LocationRepository from '../repositories/LocationRepository';
 
 export default class LocationCreationService {

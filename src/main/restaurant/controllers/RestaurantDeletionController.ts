@@ -1,6 +1,6 @@
 import { AuthRequest } from '../../auth/middleware/JwtFilter';
 import { Request, RequestHandler, Response } from 'express';
-import RestaurantDeletionService from 'restaurant/service/RestaurantDeletionService';
+import RestaurantDeletionService from '../service/RestaurantDeletionService';
 
 export default function getRestaurantDeletionController(service: RestaurantDeletionService): RequestHandler {
     return async (req: Request, res: Response): Promise<void> => {

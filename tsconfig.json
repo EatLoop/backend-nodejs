@@ -10,7 +10,7 @@
 		"forceConsistentCasingInFileNames": true,
 		"experimentalDecorators": true,
 		"emitDecoratorMetadata": true,
-		"baseUrl": "./src/main",
+		"baseUrl": "./",
 		"paths": {
 			"@root/*": ["../*"]
 		}

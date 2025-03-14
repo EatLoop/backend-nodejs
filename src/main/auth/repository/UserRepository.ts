@@ -1,6 +1,6 @@
 /** @format */
 
-import User from 'auth/model/User';
+import User from '../model/User';
 import {DataSource, Repository} from 'typeorm';
 
 export default class UserRepository {

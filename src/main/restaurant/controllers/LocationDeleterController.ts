@@ -1,7 +1,7 @@
 
 import { Request, Response } from 'express';
 import LocationDeleterService from '../service/LocationDeleterService';
-import { AuthRequest } from 'auth/middleware/JwtFilter';
+import { AuthRequest } from '../../auth/middleware/JwtFilter';
 
 export default function getLocationDeleterController(service: LocationDeleterService) {
 

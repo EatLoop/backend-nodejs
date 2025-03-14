@@ -1,10 +1,10 @@
 import { Router } from "express";
-import getMenuItemCreationController from "restaurant/controllers/MenuItemCreationController";
-import getMenuItemDeletionController from "restaurant/controllers/MenuItemDeletionController";
-import getMenuItemUpdaterController from "restaurant/controllers/MenuItemUpdaterController";
-import MenuItemCreationService from "restaurant/service/MenuItemCreationService";
-import MenuItemDeletionService from "restaurant/service/MenuItemDeletionService";
-import MenuItemUpdaterService from "restaurant/service/MenuItemUpdaterService";
+import getMenuItemCreationController from "../controllers/MenuItemCreationController";
+import getMenuItemDeletionController from "../controllers/MenuItemDeletionController";
+import getMenuItemUpdaterController from "../controllers/MenuItemUpdaterController";
+import MenuItemCreationService from "../service/MenuItemCreationService";
+import MenuItemDeletionService from "../service/MenuItemDeletionService";
+import MenuItemUpdaterService from "../service/MenuItemUpdaterService";
 import { authenticate, requireRole } from '../../auth/middleware/JwtFilter';
 
 export default function getMenuItemRouter(menuItemCreationService:MenuItemCreationService,

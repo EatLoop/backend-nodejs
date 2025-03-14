@@ -3,11 +3,11 @@
 import {DataSource, DataSourceOptions} from 'typeorm';
 import RoleRepository from '../auth/repository/RoleRepository';
 import UserRepository from '../auth/repository/UserRepository';
-import entities from 'entities';
 import RestaurantRepository from '../restaurant/repositories/RestaurantRepository';
-import LocationRepository from 'restaurant/repositories/LocationRepository';
-import MenuRepository from 'restaurant/repositories/MenuRepository';
-import MenuItemRepository from 'restaurant/repositories/MenuItemRepository';
+import LocationRepository from '../restaurant/repositories/LocationRepository';
+import MenuRepository from '../restaurant/repositories/MenuRepository';
+import MenuItemRepository from '../restaurant/repositories/MenuItemRepository';
+import entities from '../entities';
 const DATABASE_TYPE = 'postgres';
 
 interface DatabaseParameters {

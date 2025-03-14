@@ -1,8 +1,8 @@
 import { Router } from "express";
-import getMenuCreationController from "restaurant/controllers/MenuCreationController";
-import getMenuFindByIdController from "restaurant/controllers/MenuFindByIdController";
-import MenuCreationService from "restaurant/service/MenuCreationService";
-import MenuFindByIdService from "restaurant/service/MenuFindByIdService";
+import getMenuCreationController from "../controllers/MenuCreationController";
+import getMenuFindByIdController from "../controllers/MenuFindByIdController";
+import MenuCreationService from "../service/MenuCreationService";
+import MenuFindByIdService from "../service/MenuFindByIdService";
 import { authenticate, requireRole } from '../../auth/middleware/JwtFilter';
 
 export default function getMenuRouter(menuFindByIdService:MenuFindByIdService,

@@ -1,10 +1,8 @@
-/** @format */
-
-import User from 'auth/model/User';
-import UserRepository from 'auth/repository/UserRepository';
-import * as bcrypt from 'bcrypt';
-import authDetails from 'config/auth';
-import validateUserDetails from 'validation/UserSignupRequestValidation';
+import authDetails from "../../config/auth";
+import UserRepository from "../repository/UserRepository";
+import validateUserDetails from "src/main/validation/UserSignupRequestValidation";
+import User from "../model/User";
+import bcrypt from 'bcrypt'
 
 export default class SignupService {
 	constructor(private readonly userRepository: UserRepository) {}

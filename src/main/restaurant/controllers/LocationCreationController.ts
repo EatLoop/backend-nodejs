@@ -1,6 +1,6 @@
 
 import { Request, Response } from 'express';
-import LocationCreationService from 'restaurant/service/LocationCreatorService';
+import LocationCreationService from '../service/LocationCreatorService';
 import { AuthRequest } from '../../auth/middleware/JwtFilter';
 
 export default function getLocationCreationController(service:LocationCreationService) {

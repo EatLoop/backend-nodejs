@@ -1,8 +1,8 @@
 /** @format */
 
 import {Request, Response} from 'express';
-import JwtService from 'auth/service/JwtService';
-import SignupService from 'auth/service/SignupService';
+import JwtService from '../service/JwtService';
+import SignupService from '../service/SignupService';
 
 const register = (signupService: SignupService, jwtService: JwtService) => async (req: Request, res: Response) => {
 	const {name, email, password} = req.body;

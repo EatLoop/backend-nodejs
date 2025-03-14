@@ -1,8 +1,8 @@
 /** @format */
 
 import {Request, Response} from 'express';
-import JwtService from 'auth/service/JwtService';
-import LoginService from 'auth/service/LoginService';
+import JwtService from '../service/JwtService';
+import LoginService from '../service/LoginService';
 
 const login =
 	(loginService: LoginService, jwtService: JwtService) =>
