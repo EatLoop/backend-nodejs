@@ -1,9 +1,8 @@
 /** @format */
 
-import MenuItemCreationService from '../service/MenuItemCreationService';
-import MenuItemCreationRequest from '../dto/MenuItemCreationRequestDto';
-import MenuItem from '../models/MenuItem';
 import { Request, Response } from 'express';
+import MenuItemCreationRequest from '../dto/MenuItemCreationRequestDto';
+import MenuItemCreationService from '../service/MenuItemCreationService';
 
 export default function getMenuItemCreationController(service: MenuItemCreationService) {
 

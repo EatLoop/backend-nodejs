@@ -1,7 +1,9 @@
 /** @format */
 
-import {Column, CreateDateColumn, Entity, ManyToMany, PrimaryGeneratedColumn, UpdateDateColumn} from 'typeorm';
+// src/entities/User.ts
+import {Column, CreateDateColumn, Entity, JoinTable, ManyToMany, PrimaryGeneratedColumn, UpdateDateColumn} from 'typeorm';
 import Role from './Role';
+
 @Entity('users')
 export default class User {
 	@PrimaryGeneratedColumn('uuid')
@@ -22,9 +24,9 @@ export default class User {
 	@UpdateDateColumn()
 	updatedAt?: Date;
 
-	@ManyToMany(() => Role)
-	roles?: Role[];
-
+	@ManyToMany(()=>Role,role=>role.users)
+	@JoinTable()
+	roles?:Role[]
 	constructor(email: string, name: string, password: string) {
 		this.email = email;
 		this.name = name;

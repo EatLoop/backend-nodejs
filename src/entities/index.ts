@@ -1,6 +1,6 @@
 /** @format */
 
-import { Permission } from '../auth/model/Permission';
+import Permission from '../auth/model/Permission';
 import Role from '../auth/model/Role';
 import User from '../auth/model/User';
 import Location from '../restaurant/models/Location';

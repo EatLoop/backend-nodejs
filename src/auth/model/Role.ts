@@ -2,7 +2,8 @@
 
 // src/entities/Role.ts
 import {Column, Entity, ManyToMany, PrimaryGeneratedColumn} from 'typeorm';
-import {Permission} from './Permission';
+import Permission from './Permission';
+import User from './User';
 
 @Entity()
 export default class Role {
@@ -13,9 +14,12 @@ export default class Role {
 	name: string;
 
 	@ManyToMany(() => Permission, permission => permission.roles)
-	permissions: Permissions[];
+	permissions: Permission[];
 
-	constructor(name: string, permissions: Permissions[]) {
+	@ManyToMany(() => User)
+	users?: User[];
+
+	constructor(name: string, permissions: Permission[]) {
 		this.name = name;
 		this.permissions = permissions;
 	}

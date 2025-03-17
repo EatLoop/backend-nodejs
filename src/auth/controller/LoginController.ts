@@ -11,7 +11,7 @@ const login =
 		const {id, roles} = await loginService.login(email, password);
 
 		if (!id || !roles) {
-			res.status(401).json({error: 'Invalid credentials'});
+			res.status(401).json({error: 'Invalid credentials',id,roles});
 			return;
 		}
 
