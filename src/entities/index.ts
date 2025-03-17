@@ -8,4 +8,4 @@ import Menu from '../restaurant/models/Menu';
 import MenuItem from '../restaurant/models/MenuItem';
 import Restaurant from '../restaurant/models/Restaurant';
 
-export default [User,Role,Permission,Restaurant,Menu,MenuItem,Location];
+export default [User, Role, Permission, Restaurant, Menu, MenuItem, Location];

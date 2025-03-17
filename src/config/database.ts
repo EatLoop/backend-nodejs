@@ -3,21 +3,21 @@
 import {DataSource, DataSourceOptions} from 'typeorm';
 import RoleRepository from '../auth/repository/RoleRepository';
 import UserRepository from '../auth/repository/UserRepository';
-import RestaurantRepository from '../restaurant/repositories/RestaurantRepository';
-import LocationRepository from '../restaurant/repositories/LocationRepository';
-import MenuRepository from '../restaurant/repositories/MenuRepository';
-import MenuItemRepository from '../restaurant/repositories/MenuItemRepository';
 import entities from '../entities';
+import LocationRepository from '../restaurant/repositories/LocationRepository';
+import MenuItemRepository from '../restaurant/repositories/MenuItemRepository';
+import MenuRepository from '../restaurant/repositories/MenuRepository';
+import RestaurantRepository from '../restaurant/repositories/RestaurantRepository';
 const DATABASE_TYPE = 'postgres';
 
 interface DatabaseParameters {
 	dataSource?: DataSource;
 	userRepository?: UserRepository;
 	roleRepository?: RoleRepository;
-	restaurantRepository?:RestaurantRepository
-	locationRepository?:LocationRepository
-	menuRepository?:MenuRepository
-	menuItemRepository?:MenuItemRepository
+	restaurantRepository?: RestaurantRepository;
+	locationRepository?: LocationRepository;
+	menuRepository?: MenuRepository;
+	menuItemRepository?: MenuItemRepository;
 }
 
 let databaseParameters: DatabaseParameters = {};
@@ -49,14 +49,20 @@ export const configureDatabase = async () => {
 		console.error('Error initializing database', error);
 	}
 	const userRepository = await UserRepository.initialize(dataSource);
-	const roleRepository=await RoleRepository.initialize(dataSource)
-	const menuItemRepository=await MenuItemRepository.initialize(dataSource);
-	const restaurantRepository=await RestaurantRepository.initialize(dataSource)
-	const locationRepository=await LocationRepository.initialize(dataSource)
-	const menuRepository=await MenuRepository.initialize(dataSource)
-	databaseParameters={
-		dataSource,userRepository,roleRepository,locationRepository,menuItemRepository,menuRepository,restaurantRepository
-	}
+	const roleRepository = await RoleRepository.initialize(dataSource);
+	const menuItemRepository = await MenuItemRepository.initialize(dataSource);
+	const restaurantRepository = await RestaurantRepository.initialize(dataSource);
+	const locationRepository = await LocationRepository.initialize(dataSource);
+	const menuRepository = await MenuRepository.initialize(dataSource);
+	databaseParameters = {
+		dataSource,
+		userRepository,
+		roleRepository,
+		locationRepository,
+		menuItemRepository,
+		menuRepository,
+		restaurantRepository,
+	};
 };
 const getDatabaseParams = () => {
 	return databaseParameters;
