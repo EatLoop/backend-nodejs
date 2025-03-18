@@ -1,6 +1,7 @@
+/** @format */
 
-type UpdateManagerRequestDto ={
+type UpdateManagerRequestDto = {
 	managerId: string;
-    location_id: string;
-}
-export default UpdateManagerRequestDto
+	locationId: string;
+};
+export default UpdateManagerRequestDto;

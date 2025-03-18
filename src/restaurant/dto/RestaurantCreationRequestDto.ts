@@ -1,6 +1,6 @@
 type RestaurantCreationRequestDto= {
-    restaurant_name: string;
-    restaurant_description: string;
+    restaurantName: string;
+    restaurantDescription: string;
 }
 
 export default RestaurantCreationRequestDto;
