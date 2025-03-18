@@ -24,6 +24,7 @@ import getLocationRouter from './restaurant/router/LocationRouter';
 import getMenuRouter from './restaurant/router/MenuRouter';
 import getMenuItemRouter from './restaurant/router/MenuItemRouter';
 import getDatabaseParams from './config/database';
+import RestaurantOwnerCreationService from './auth/service/RestaurantOwnerCreationService';
 
 const main = async () => {
 	await configure();
@@ -47,10 +48,11 @@ const main = async () => {
 	const menuItemCreationService=new MenuItemCreationService(menuItemRepository)
 	const menuItemUpdaterService=new MenuItemUpdaterService(menuItemRepository)
 	const menuItemDeletionService=new MenuItemDeletionService(menuItemRepository)
+	const restaurantOwnerCreationService = new RestaurantOwnerCreationService(userRepository);
 	app.use(express.json())
 	app.use(cors())
 	app.use(morgan('dev'))
-	app.use('/api/v1/auth',getAuthRouter(loginService,signupService,jwtService))
+	app.use('/api/v1/auth',getAuthRouter(loginService,signupService,jwtService,restaurantOwnerCreationService))
 	app.use('/api/v1/restaurant',getRestaurantRouter(restaurantCreationService,restaurantFindByIdService,restaurantDeletionService))
 	app.use('/api/v1/location',getLocationRouter(locationCreationService,locationFindByIdService,managerUpdateService,locationDeleterService))
 	app.use('/api/v1/menu',getMenuRouter(menuFindByIdService,menuCreationService))
