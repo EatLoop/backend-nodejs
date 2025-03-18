@@ -1,14 +1,11 @@
-import { Router } from "express";
-import getMenuCreationController from "../controllers/MenuCreationController";
-import getMenuFindByIdController from "../controllers/MenuFindByIdController";
-import MenuCreationService from "../service/MenuCreationService";
-import MenuFindByIdService from "../service/MenuFindByIdService";
-import { authenticate, requireRole } from '../../auth/middleware/JwtFilter';
+/** @format */
 
-export default function getMenuRouter(menuFindByIdService:MenuFindByIdService,
-    menuCreationService:MenuCreationService){
-    const router=Router();
-    router.post('/',authenticate,requireRole('RESTAURANT_OWNER'),getMenuCreationController(menuCreationService));
-    router.get('/:restaurantId',(getMenuFindByIdController(menuFindByIdService)));
-    return router;
+import {Router} from 'express';
+import getMenuFindByIdController from '../controllers/MenuFindByIdController';
+import MenuFindByIdService from '../service/MenuFindByIdService';
+
+export default function getMenuRouter(menuFindByIdService: MenuFindByIdService) {
+	const router = Router();
+	router.get('/:restaurantId', getMenuFindByIdController(menuFindByIdService));
+	return router;
 }
