@@ -9,8 +9,8 @@ export default function getLocationCreationController(service:LocationCreationSe
         try {
             const authRequest=req as AuthRequest
             const {userId,body}=authRequest 
-            await service.createLocation(userId,body);
-            res.status(201)
+            const location=await service.createLocation(userId,body);
+            res.status(201).json(location)
         } catch (error) {
             res.status(400).json({error})
         }

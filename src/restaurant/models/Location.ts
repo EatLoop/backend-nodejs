@@ -1,5 +1,6 @@
+/** @format */
 
-import {Entity, PrimaryGeneratedColumn, Column, UpdateDateColumn, CreateDateColumn} from 'typeorm';
+import {Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn} from 'typeorm';
 
 @Entity()
 export default class Location {
@@ -16,8 +17,8 @@ export default class Location {
 	state: string;
 
 	@Column()
-	managerId?: string;
-	
+	managerEmail?: string;
+
 	@Column()
 	ownerId?: string;
 
@@ -33,13 +34,13 @@ export default class Location {
 	@UpdateDateColumn()
 	updatedAt?: Date;
 
-	constructor(address: string, city: string, state: string, managerId: string, restaurantId: string,ownerId: string,openingHours:Record<string,string>) {
+	constructor(address: string, city: string, state: string, managerId: string, restaurantId: string, ownerId: string, openingHours: Record<string, string>) {
 		this.address = address;
 		this.city = city;
 		this.state = state;
-		this.managerId = managerId;
+		this.managerEmail = managerId;
 		this.restaurantId = restaurantId;
-		this.ownerId=ownerId;
-		this.openingHours=openingHours
+		this.ownerId = ownerId;
+		this.openingHours = openingHours;
 	}
 }

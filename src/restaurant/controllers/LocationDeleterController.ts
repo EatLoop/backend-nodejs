@@ -11,6 +11,7 @@ export default function getLocationDeleterController(service: LocationDeleterSer
 			const userId=authRequest.userId
 			const locationId=authRequest.params.id
 			await service.deleteLocation(locationId,userId);
+			res.status(204).json({success:true})
 		} catch (error) {
 			res.status(400).json({error})
 		}
